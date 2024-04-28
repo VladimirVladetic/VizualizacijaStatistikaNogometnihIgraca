@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Football Player Statistics</title>
+    <!-- Include D3.js library -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
@@ -11,25 +12,11 @@
     <div id="data-check"></div>
 
     <script>
-        var filePath = "./../csvfile.csv";
-
-        function loadCSVFromPath(filePath) {
-            fetch(filePath)
-                .then(response => response.text())
-                .then(csvData => processData(csvData))
-                .catch(error => console.error('Error loading CSV file:', error));
-        }
-
-        function processData(csvData) {
-            var data = d3.csvParse(csvData);
-
-            var dataDiv = document.getElementById('data');
-            dataDiv.textContent = JSON.stringify(data, null, 2);
-
+        d3.csv("./../csvfile.csv").then(function(data) {
             checkData(data);
-        }
-
-        loadCSVFromPath(filePath);
+        }).catch(function(error) {
+            console.error("Error loading the CSV file:", error);
+        });
 
         function checkData(data) {
             var totalRecords = data.length;
