@@ -12,37 +12,53 @@
 
     <script>
         d3.csv("./../csvfile.csv").then(function(data) {
-            checkData(data);
+            checkData(data, "Player");
         }).catch(function(error) {
             console.error("Error loading the CSV file:", error);
         });
 
-        function checkData(data) {
+        function checkData(data, column) {
             var totalRecords = data.length;
             var message = "<p>Total records: " + totalRecords + "</p>";
-
+        
             var nullValues = 0;
             var emptyFields = 0;
-
+            var duplicates = {};
+        
             data.forEach(function(d) {
                 Object.keys(d).forEach(function(key) {
                     if (d[key] === null || d[key] === undefined) {
                         nullValues++;
                     }
                 });
-
+        
                 Object.values(d).forEach(function(value) {
                     if (value === "") {
                         emptyFields++;
                     }
                 });
+        
+                var value = d[column];
+                if (value !== undefined && value !== null) {
+                    if (!duplicates[value]) {
+                        duplicates[value] = 1;
+                    } else {
+                        duplicates[value]++;
+                    }
+                }
             });
-
+        
+            var duplicateCount = Object.values(duplicates).reduce(function(acc, val) {
+                return acc + (val > 1 ? 1 : 0);
+            }, 0);
+        
             message += "<p>Null values found: " + nullValues + "</p>";
             message += "<p>Empty fields found: " + emptyFields + "</p>";
-
+            message += "<p>Duplicates in column '" + column + "': " + duplicateCount + "</p>";
+        
             d3.select("#data-check").html(message);
         }
+        
 
     </script>
 </body>
