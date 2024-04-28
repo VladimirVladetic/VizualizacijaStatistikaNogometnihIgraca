@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Player Statistics</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <h1>Football Player Statistics</h1>
+    <div id="data-check"></div>
+
+    <script>
+        var filePath = "./../csvfile.csv";
+
+        function loadCSVFromPath(filePath) {
+            fetch(filePath)
+                .then(response => response.text())
+                .then(csvData => processData(csvData))
+                .catch(error => console.error('Error loading CSV file:', error));
+        }
+
+        function processData(csvData) {
+            var data = d3.csvParse(csvData);
+
+            var dataDiv = document.getElementById('data');
+            dataDiv.textContent = JSON.stringify(data, null, 2);
+
+            checkData(data);
+        }
+
+        loadCSVFromPath(filePath);
+
+        function checkData(data) {
+            var totalRecords = data.length;
+            var message = "<p>Total records: " + totalRecords + "</p>";
+
+            var nullValues = 0;
+            var emptyFields = 0;
+
+            data.forEach(function(d) {
+                Object.keys(d).forEach(function(key) {
+                    if (d[key] === null || d[key] === undefined) {
+                        nullValues++;
+                    }
+                });
+
+                Object.values(d).forEach(function(value) {
+                    if (value === "") {
+                        emptyFields++;
+                    }
+                });
+            });
+
+            message += "<p>Null values found: " + nullValues + "</p>";
+            message += "<p>Empty fields found: " + emptyFields + "</p>";
+
+            d3.select("#data-check").html(message);
+        }
+
+    </script>
+</body>
+</html>
