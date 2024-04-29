@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Football Player Statistics</title>
+    <title>Football Player Statistics Data Check</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
-    <h1>Football Player Statistics</h1>
+    <h1>Football Player Statistics Data Check</h1>
     <div id="data-check"></div>
 
     <script>
@@ -19,7 +19,7 @@
 
         function checkData(data, column) {
             var totalRecords = data.length;
-            var message = "<p>Total records: " + totalRecords + "</p>";
+            var message = "<h3>Total records: " + totalRecords + "</h3>";
         
             var nullValues = 0;
             var emptyFields = 0;
@@ -52,9 +52,9 @@
                 return acc + (val > 1 ? 1 : 0);
             }, 0);
         
-            message += "<p>Null values found: " + nullValues + "</p>";
-            message += "<p>Empty fields found: " + emptyFields + "</p>";
-            message += "<p>Duplicates in column '" + column + "': " + duplicateCount + "</p>";
+            message += "<h3>Null values found: " + nullValues + "</h3>";
+            message += "<h3>Empty fields found: " + emptyFields + "</h3>";
+            message += "<h3>Duplicates in column '" + column + "': " + duplicateCount + "</h3>";
         
             d3.select("#data-check").html(message);
         }
