@@ -11,7 +11,7 @@
     <div id="data-check"></div>
 
     <script>
-        d3.csv("./../csvfile.csv").then(function(data) {
+        d3.csv("FullData_augmented.csv").then(function(data) {
             checkData(data, "Player");
         }).catch(function(error) {
             console.error("Error loading the CSV file:", error);

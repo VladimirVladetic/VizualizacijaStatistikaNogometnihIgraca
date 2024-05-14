@@ -1,0 +1,36 @@
+<html>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="./makeRadarChart.js" defer></script>
+    <script src="./essentials.js"></script>
+    <link rel="stylesheet" href="essentials.css">
+    <body>
+        <input class="player-input" type="text" id="player-1">
+        <input class="player-input" type="text" id="player-2">
+        <input class="player-input" type="text" id="player-3">
+        <select id="position-select">
+            <option value="forward">Forward</option>
+            <option value="midfield">Midfield</option>
+            <option value="defense">Defense</option>
+            <option value="goalkeeper">Goalkeeper</option>
+        </select>
+        <button onclick="updateChart()">Update Chart</button>
+    
+        <div id="suggestions-container" class="suggestions"></div>
+        <div id="chart-container"></div>
+    
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                d3.csv("FullData_augmented.csv").then(function(data) {
+                    // let features = ["SoT%", "PasTotCmp%", "PasShoCmp%", "PasMedCmp%", "PasLonCmp%", "TklDri%"];
+                    let playerInputs = document.querySelectorAll(".player-input");
+
+                    playerInputs.forEach(input => {
+                        input.addEventListener("input", function() {
+                            showSuggestions(data, this.id);
+                        });
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
