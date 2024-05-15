@@ -35,29 +35,24 @@ function updateChart() {
         d3.csv("FullData_augmented.csv").then(function(data){
             if (selectedPosition === "forward") {
                 features = ["Attacking_Position", "Composure", "Shot_Power", "Finishing", "Volleys", "Penalties"];
-            } else if (selectedPosition === "midfield") {
-                // features = ["MP", "MidfieldSpecificFeature2", ...];
-            } else if (selectedPosition === "defense") {
-                // features = ["MP", "DefenseSpecificFeature2", ...];
+            } else if (selectedPosition === "playmaking") {
+                features = ["Vision", "Short_Pass", "Long_Pass", "Crossing", "Curve", "Freekick_Accuracy"];
+            } else if (selectedPosition === "defending") {
+                features = ["Heading", "Jumping", "Strength", "Standing_Tackle", "Sliding_Tackle", "Marking"];
             } else if (selectedPosition === "goalkeeper") {
-                // features = ["MP", "GoalkeeperSpecificFeature2", ...];
+                features = ["GK_Reflexes", "GK_Handling", "GK_Kicking", "GK_Diving", "GK_Positioning", "Strength"];
+            } else if (selectedPosition === "dribbling") {
+                features = ["Ball_Control", "Dribbling", "Acceleration", "Speed", "Balance", "Agility"];
+            } else if (selectedPosition === "disruption") {
+                features = ["Strength", "Reactions", "Interceptions", "Stamina", "Standing_Tackle", "Sliding_Tackle"];
             }
 
-            let minMaxValues = {};
-            features.forEach(feature => {
-                let values = data.map(row => parseFloat(row[feature])).filter(value => !isNaN(value));
-                minMaxValues[feature] = {
-                    min: Math.min(...values),
-                    max: Math.max(...values)
-                };
-            });
-
-            updateChartWithSelectedPlayers(data, features, playerNames, minMaxValues);
+            updateChartWithSelectedPlayers(data, features, playerNames);
         });
     }
 }
 
-function updateChartWithSelectedPlayers(data, features, playerNames, minMaxValues) {
+function updateChartWithSelectedPlayers(data, features, playerNames) {
     let selectedPlayersData = [];
     let selectedPlayerNames = [];
 
