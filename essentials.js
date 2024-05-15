@@ -39,7 +39,7 @@ function updateChart() {
                 features = ["Vision", "Short_Pass", "Long_Pass", "Crossing", "Curve", "Freekick_Accuracy"];
             } else if (selectedPosition === "defending") {
                 features = ["Heading", "Jumping", "Strength", "Standing_Tackle", "Sliding_Tackle", "Marking"];
-            } else if (selectedPosition === "goalkeeper") {
+            } else if (selectedPosition === "goalkeeping") {
                 features = ["GK_Reflexes", "GK_Handling", "GK_Kicking", "GK_Diving", "GK_Positioning", "Strength"];
             } else if (selectedPosition === "dribbling") {
                 features = ["Ball_Control", "Dribbling", "Acceleration", "Speed", "Balance", "Agility"];

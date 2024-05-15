@@ -13,7 +13,7 @@
             <option value="playmaking">Playmaking</option>
             <option value="disruption">Disruption</option>
             <option value="defending">Defending</option>
-            <option value="goalkeeper">Goalkeeper</option>
+            <option value="goalkeeping">Goalkeeping</option>
         </select>
         <button onclick="updateChart()">Update Chart</button>
     
@@ -23,9 +23,7 @@
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 d3.csv("FullData_augmented.csv").then(function(data) {
-                    // let features = ["SoT%", "PasTotCmp%", "PasShoCmp%", "PasMedCmp%", "PasLonCmp%", "TklDri%"];
                     let playerInputs = document.querySelectorAll(".player-input");
-
                     playerInputs.forEach(input => {
                         input.addEventListener("input", function() {
                             showSuggestions(data, this.id);
