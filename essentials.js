@@ -1,3 +1,7 @@
+function redirect(url) {
+    window.location.href = url;
+}
+
 function showSuggestions(data, inputId) {
         let playerNames = data.map(player => player.Name);
         let input = document.getElementById(inputId);
