@@ -1,3 +1,7 @@
+body{
+    background-color: #4d4d4d;
+}
+
 .player-input {
     position: relative;
     z-index: 1;
@@ -13,6 +17,8 @@ svg {
     max-height: 200px;
     overflow-y: auto;
     z-index: 2;
+    margin-top: 1%;
+    margin-left: 40%;
 }
 .suggestion-item {
     padding: 5px;
@@ -22,25 +28,63 @@ svg {
     background-color: #f0f0f0;
 }
 
+.top {
+    background-color: black;
+    color: white;
+    margin: 0px;
+    border-radius: 10%;
+    border: solid 5px #333333;
+    padding: 0.5%;
+    padding-top: 0;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 20px;
-    background-color: #f8f8f8;
+    /* background-color: #f8f8f8; */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-header {
     cursor: pointer;
     flex: 1;
     text-align: center;
-    padding: 10px;
+    padding: 1px;
     margin: 0;
-    color: black;
+    color: white;
+    /* background-color: black; */
 }
+
 .nav-header:hover {
     text-decoration: none;
     background-color: gray;
+}
+
+.inputs {
+    display: flex;
+    margin-top: 1%;
+    justify-content: center;
+    margin-left: 15%;
+    margin-right: 15%;
+    gap: 0.8%;
+    background-color: black;
+    border-radius: 15%;
+    border: solid 5px #333333;
+    padding: 0.5%;
 }

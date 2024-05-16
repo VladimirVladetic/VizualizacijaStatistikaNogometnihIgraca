@@ -2,6 +2,17 @@ function redirect(url) {
     window.location.href = url;
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    d3.csv("FullData_augmented.csv").then(function(data) {
+        let playerInputs = document.querySelectorAll(".player-input");
+        playerInputs.forEach(input => {
+            input.addEventListener("input", function() {
+                showSuggestions(data, this.id);
+            });
+        });
+    });
+});
+
 function showSuggestions(data, inputId) {
         let playerNames = data.map(player => player.Name);
         let input = document.getElementById(inputId);
@@ -87,5 +98,3 @@ function updateChartWithSelectedPlayers(data, features, playerNames) {
         makeRadarChart(selectedPlayersData, features, selectedPlayerNames);
     }
 }
-
-

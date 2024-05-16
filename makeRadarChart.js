@@ -8,7 +8,7 @@ function makeRadarChart(data, features, playerNames) {
     const ticks = Array.from({ length: ticksCount + 1 }, (_, i) => i * interval);
     const colors = ["darkorange", "gray", "navy"];
     
-    const svg = d3.select("body").selectAll("svg").data([null]).join("svg")
+    const svg = d3.select("#chart-container").selectAll("svg").data([null]).join("svg")
         .attr("width", width)
         .attr("height", height);
 
