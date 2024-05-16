@@ -2,6 +2,24 @@ function redirect(url) {
     window.location.href = url;
 }
 
+function goToScatter() {
+    document.getElementById("scatter-div").style.display = "flex";
+    document.getElementById("radar-div").style.display = "none";
+    document.getElementById("individual-div").style.display = "none";
+}
+
+function goToRadar() {
+    document.getElementById("scatter-div").style.display = "none";
+    document.getElementById("radar-div").style.display = "flex";
+    document.getElementById("individual-div").style.display = "none";
+}
+
+function goToIndividual() {
+    document.getElementById("scatter-div").style.display = "none";
+    document.getElementById("radar-div").style.display = "none";
+    document.getElementById("individual-div").style.display = "flex";
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     d3.csv("FullData_augmented.csv").then(function(data) {
         let playerInputs = document.querySelectorAll(".player-input");
@@ -97,4 +115,82 @@ function updateChartWithSelectedPlayers(data, features, playerNames) {
     if (selectedPlayersData.length === playerNames.length) { 
         makeRadarChart(selectedPlayersData, features, selectedPlayerNames);
     }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    d3.csv("FullData_augmented.csv").then(function(data) {
+        let columnNames = Object.keys(data[0]).slice(19);
+        let inputIds = ["stat-1", "stat-2"];
+        inputIds.forEach(inputId => {
+            let input = document.getElementById(inputId);
+            input.addEventListener("input", function() {
+                showColumnSuggestions(columnNames, this.value, inputId);
+            });
+        });
+    });
+});
+
+function showColumnSuggestions(columnNames, inputValue, inputId) {
+    let suggestionsContainer = document.getElementById("suggestions-container");
+    suggestionsContainer.innerHTML = "";
+
+    let suggestions = columnNames.filter(name => name.toLowerCase().includes(inputValue.toLowerCase()));
+    suggestions.forEach(suggestion => {
+        let suggestionItem = document.createElement("div");
+        suggestionItem.classList.add("suggestion-item");
+        suggestionItem.textContent = suggestion;
+        suggestionItem.addEventListener("click", function() {
+            let input = document.getElementById(inputId);
+            input.value = suggestion;
+            suggestionsContainer.innerHTML = "";
+        });
+        suggestionsContainer.appendChild(suggestionItem);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    d3.csv("FullData_augmented.csv").then(function(data) {
+        let team = document.querySelectorAll(".team-input");
+        team.forEach(input => {
+            input.addEventListener("input", function() {
+                showTeamSuggestions(data, this.id);
+            });
+        });
+    });
+});
+
+function showTeamSuggestions(data, inputId) {
+    let input = document.getElementById(inputId);
+    let inputValue = input.value.toLowerCase();
+    let suggestionsContainer = document.getElementById("suggestions-container");
+    suggestionsContainer.innerHTML = "";
+
+    let clubNames = data.map(player => player.Club);
+    let nationalityNames = data.map(player => player.Nationality);
+
+    let suggestionsSet = new Set([...clubNames, ...nationalityNames]);
+    let suggestions = Array.from(suggestionsSet);
+
+    suggestions = suggestions.filter(name => name.toLowerCase().includes(inputValue));
+
+    suggestions.forEach(suggestion => {
+        let suggestionItem = document.createElement("div");
+        suggestionItem.classList.add("suggestion-item");
+        suggestionItem.textContent = suggestion;
+        suggestionItem.addEventListener("click", function() {
+            input.value = suggestion;
+            suggestionsContainer.innerHTML = "";
+        });
+        suggestionsContainer.appendChild(suggestionItem);
+    });
+}
+
+function updateScatterPlot() {
+    // console.log("entered function");
+    stat1 = document.getElementById("stat-1").value;
+    stat2 = document.getElementById("stat-2").value;
+    team = document.getElementById("team").value;
+    // console.log(stat1)
+
+    createScatterPlot(stat1, stat2, team);
 }

@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script src="./makeScatterPlot.js" defer></script>
+        <script src="./essentials.js"></script>
+        <link rel="stylesheet" href="essentials.css">
+        <title>Scatter Plot</title>
+    </head>
+    <body>
+        
+        <div class="top">
+            <h1>Footballer analysis</h1>
+            <nav>
+                <h2 class="nav-header" id="radar-chart-header" onclick="redirect('radarChart.html')">Radar Chart Player Comparison</h2>
+                <h2 class="nav-header" id="scatter-plot-header" onclick="redirect('scatterPlot.html')">Scatter Plot Player Stats</h2>
+                <h2 class="nav-header" id="individual-player-stats" onclick="redirect('individualPlayer.html')">Individual player stats</h2>
+            </nav>
+        </div>
+
+        <div id="scatter-div">
+            <div class="inputs">
+                <input class="stat-input" type="text" id="stat-1" placeholder="Enter statistic">
+                <input class="stat-input" type="text" id="stat-2" placeholder="Enter statistic">
+                <input class="team-input" type="text" id="team" placeholder="Enter team">
+                <button onclick="updateScatterPlot();">Click me</button>
+            </div>
+    
+            <div id="suggestions-container" class="suggestions"></div>
+    
+            <div id="chart-container"></div>
+        </div>         
+
+    </body>
+
+</html>

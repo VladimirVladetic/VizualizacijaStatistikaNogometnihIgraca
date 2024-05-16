@@ -6,10 +6,12 @@ body{
     position: relative;
     z-index: 1;
 }
+
 svg {
     position: relative;
     z-index: 0;
 }
+
 .suggestions {
     position: absolute;
     background-color: white;
@@ -20,10 +22,12 @@ svg {
     margin-top: 1%;
     margin-left: 40%;
 }
+
 .suggestion-item {
     padding: 5px;
     cursor: pointer;
 }
+
 .suggestion-item:hover {
     background-color: #f0f0f0;
 }
@@ -88,3 +92,26 @@ nav {
     border: solid 5px #333333;
     padding: 0.5%;
 }
+
+.tooltip {
+    position: absolute;
+    text-align: center;
+    width: 120px;
+    height: 50px;
+    padding: 5px;
+    font: 12px sans-serif;
+    background: black   ;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+    color: white;
+}
+
+#scatter-div {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    align-items: center;
+}
+
