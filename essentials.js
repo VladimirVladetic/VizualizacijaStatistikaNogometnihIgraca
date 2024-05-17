@@ -6,18 +6,24 @@ function goToScatter() {
     document.getElementById("scatter-div").style.display = "flex";
     document.getElementById("radar-div").style.display = "none";
     document.getElementById("individual-div").style.display = "none";
+    d3.select("#scatter-chart-container").selectAll("svg").remove();
+    d3.select("#radar-chart-container").selectAll("svg").remove();
 }
 
 function goToRadar() {
     document.getElementById("scatter-div").style.display = "none";
     document.getElementById("radar-div").style.display = "flex";
     document.getElementById("individual-div").style.display = "none";
+    d3.select("#scatter-chart-container").selectAll("svg").remove();
+    d3.select("#radar-chart-container").selectAll("svg").remove();
 }
 
 function goToIndividual() {
     document.getElementById("scatter-div").style.display = "none";
     document.getElementById("radar-div").style.display = "none";
     document.getElementById("individual-div").style.display = "flex";
+    d3.select("#scatter-chart-container").selectAll("svg").remove();
+    d3.select("#radar-chart-container").selectAll("svg").remove();
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -31,11 +37,20 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+// function playerInputDetection() {
+//     d3.csv("FullData_augmented.csv").then(function(data) {
+//         let playerInputs = document.querySelectorAll(".player-input");
+//         playerInputs.forEach(input => {
+//             showSuggestions(data, input.id);
+//         });
+//     });
+// }
+
 function showSuggestions(data, inputId) {
         let playerNames = data.map(player => player.Name);
         let input = document.getElementById(inputId);
         let inputValue = input.value.toLowerCase();
-        let suggestionsContainer = document.getElementById("suggestions-container");
+        let suggestionsContainer = document.getElementById(`suggestions-container-player${inputId.slice(-1)}`);
         suggestionsContainer.innerHTML = "";
 
         let suggestions = playerNames.filter(name => name.toLowerCase().includes(inputValue));
@@ -131,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function showColumnSuggestions(columnNames, inputValue, inputId) {
-    let suggestionsContainer = document.getElementById("suggestions-container");
+    let suggestionsContainer = document.getElementById(`suggestions-container${inputId.slice(-1)}`);
     suggestionsContainer.innerHTML = "";
 
     let suggestions = columnNames.filter(name => name.toLowerCase().includes(inputValue.toLowerCase()));
@@ -162,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function() {
 function showTeamSuggestions(data, inputId) {
     let input = document.getElementById(inputId);
     let inputValue = input.value.toLowerCase();
-    let suggestionsContainer = document.getElementById("suggestions-container");
+    let suggestionsContainer = document.getElementById(`suggestions-container-team`);
     suggestionsContainer.innerHTML = "";
 
     let clubNames = data.map(player => player.Club);

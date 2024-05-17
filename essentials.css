@@ -2,14 +2,20 @@ body{
     background-color: #4d4d4d;
 }
 
-.player-input {
+.player-input, .team-input, .stat-input {
     position: relative;
     z-index: 1;
+    padding-top: 3%;
+    padding-bottom: 3%;
 }
 
 svg {
     position: relative;
     z-index: 0;
+}
+
+.input-wrapper {
+    position: relative;
 }
 
 .suggestions {
@@ -19,8 +25,8 @@ svg {
     max-height: 200px;
     overflow-y: auto;
     z-index: 2;
-    margin-top: 1%;
-    margin-left: 40%;
+    width: 100%;
+    top: 100%;
 }
 
 .suggestion-item {
@@ -57,7 +63,7 @@ nav {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-#chart-container {
+#radar-chart-container, #scater-chart-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,7 +78,6 @@ nav {
     padding: 1px;
     margin: 0;
     color: white;
-    /* background-color: black; */
 }
 
 .nav-header:hover {
@@ -86,32 +91,34 @@ nav {
     justify-content: center;
     margin-left: 15%;
     margin-right: 15%;
-    gap: 0.8%;
+    gap: 1%;
     background-color: black;
     border-radius: 15%;
     border: solid 5px #333333;
-    padding: 0.5%;
+    padding: 1%;
+    flex-direction: row;
 }
 
 .tooltip {
     position: absolute;
     text-align: center;
-    width: 120px;
-    height: 50px;
+    width: 150px;
+    height: 55px;
     padding: 5px;
     font: 12px sans-serif;
-    background: black   ;
+    background: black;
     border: 0px;
     border-radius: 8px;
     pointer-events: none;
     color: white;
 }
 
-#scatter-div {
+#radar-div, #scatter-div {
     display: flex;
     margin: 0;
     padding: 0;
     width: 100%;
+    justify-content: center;
+    flex-direction: column;
     align-items: center;
 }
-

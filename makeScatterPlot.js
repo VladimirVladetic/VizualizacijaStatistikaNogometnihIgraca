@@ -3,9 +3,10 @@ function createScatterPlot(xColumn, yColumn, team) {
     const height = 500;
     const margin = { top: 20, right: 30, bottom: 50, left: 50 };
 
-    d3.select("#chart-container").selectAll("svg").remove();
+    d3.select("#scatter-chart-container").selectAll("svg").remove();
+    d3.select("#radar-chart-container").selectAll("svg").remove();
 
-    const svg = d3.select("#chart-container")
+    const svg = d3.select("#scatter-chart-container")
         .append("svg")
         .attr("width", width)
         .attr("height", height)
@@ -72,8 +73,8 @@ function createScatterPlot(xColumn, yColumn, team) {
                     .duration(200)
                     .style("opacity", .9);
                 tooltip.html(`Name: ${d.Name}<br>Club: ${d.Club}<br>Country: ${d.Nationality}<br>Position: ${d.Club_Position}`)
-                    .style("left", (event.pageX + 5) + "px")
-                    .style("top", (event.pageY - 30) + "px");
+                    .style("left", (event.pageX + 8) + "px")
+                    .style("top", (event.pageY - 35) + "px");
             })
             .on("mouseout", () => {
                 tooltip.transition()
