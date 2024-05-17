@@ -6,7 +6,7 @@ function makeRadarChart(data, features, playerNames) {
     const ticksCount = 5; 
     const interval = Math.ceil(maxValue / ticksCount); 
     const ticks = Array.from({ length: ticksCount + 1 }, (_, i) => i * interval);
-    const colors = ["darkorange", "gray", "navy"];
+    const colors = ["darkorange", "green", "navy"];
     
     const svg = d3.select("#radar-chart-container").selectAll("svg").data([null]).join("svg")
         .attr("width", width)
