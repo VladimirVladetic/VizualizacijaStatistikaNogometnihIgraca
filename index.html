@@ -14,7 +14,7 @@
             <nav>
                 <h2 class="nav-header" id="radar-chart-header" onclick="goToRadar()">Radar Chart Player Comparison</h2>
                 <h2 class="nav-header" id="scatter-plot-header" onclick="goToScatter()">Scatter Plot Player Stats</h2>
-                <h2 class="nav-header" id="individual-player-stats" onclick="goToIndividual()">Individual player stats</h2>
+                <h2 class="nav-header" id="individual-player-stats" onclick="goToIndividual()">Individual player info</h2>
             </nav>
         </div>
 
@@ -74,6 +74,14 @@
         </div>
 
         <div id="individual-div" style="display: none;">
+
+            <div class="inputs">
+                <div class="input-wrapper">
+                    <input class="individual-player-input" type="text" id="individual-player" placeholder="Enter player">
+                    <div id="individual-suggestions-container" class="suggestions"></div>
+                </div>
+            </div>
+            <div id="player-container"></div>
 
         </div>
 

@@ -2,7 +2,7 @@ body{
     background-color: #4d4d4d;
 }
 
-.player-input, .team-input, .stat-input {
+.player-input, .team-input, .stat-input, .individual-player-input {
     position: relative;
     z-index: 1;
     padding-top: 3%;
@@ -25,7 +25,7 @@ svg {
     max-height: 200px;
     overflow-y: auto;
     z-index: 2;
-    width: 100%;
+    width: 98%;
     top: 100%;
 }
 
@@ -102,7 +102,7 @@ nav {
 .tooltip {
     position: absolute;
     text-align: center;
-    width: 150px;
+    width: 160px;
     height: 55px;
     padding: 5px;
     font: 12px sans-serif;
@@ -113,7 +113,7 @@ nav {
     color: white;
 }
 
-#radar-div, #scatter-div {
+#radar-div, #scatter-div, #individual-div {
     display: flex;
     margin: 0;
     padding: 0;

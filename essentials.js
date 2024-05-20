@@ -37,15 +37,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-// function playerInputDetection() {
-//     d3.csv("FullData_augmented.csv").then(function(data) {
-//         let playerInputs = document.querySelectorAll(".player-input");
-//         playerInputs.forEach(input => {
-//             showSuggestions(data, input.id);
-//         });
-//     });
-// }
-
 function showSuggestions(data, inputId) {
         let playerNames = data.map(player => player.Name);
         let input = document.getElementById(inputId);
@@ -64,6 +55,66 @@ function showSuggestions(data, inputId) {
             });
             suggestionsContainer.appendChild(suggestionItem);
         });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    d3.csv("FullData_augmented.csv").then(function(data) {
+        let playerInputs = document.querySelectorAll(".individual-player-input");
+        playerInputs.forEach(input => {
+            input.addEventListener("input", function() {
+                showIndividualSuggestions(data, this.id);
+            });
+        });
+    });
+});
+
+function showIndividualSuggestions(data, inputId) {
+    let playerNames = data.map(player => player.Name);
+    let input = document.getElementById(inputId);
+    let inputValue = input.value.toLowerCase();
+    let suggestionsContainer = document.getElementById("individual-suggestions-container");
+    suggestionsContainer.innerHTML = "";
+
+    let suggestions = playerNames.filter(name => name.toLowerCase().includes(inputValue));
+    suggestions.forEach(suggestion => {
+        let suggestionItem = document.createElement("div");
+        suggestionItem.classList.add("suggestion-item");
+        suggestionItem.textContent = suggestion;
+        suggestionItem.addEventListener("click", function() {
+            input.value = suggestion;
+            suggestionsContainer.innerHTML = "";
+            console.log(suggestion);
+            fetchPlayer(suggestion, data);
+        });
+        suggestionsContainer.appendChild(suggestionItem);
+    });
+}
+
+function fetchPlayer(playerName, data) {
+    const player = data.find(player => player.Name === playerName);
+    if (!player) {
+        console.error('Player not found in the data');
+        return;
+    }
+
+    const playerDetails = `
+        <h2>${player.Name}</h2>
+        <p><strong>Nationality:</strong> ${player.Nationality}</p>
+        <p><strong>Club:</strong> ${player.Club}</p>
+        <p><strong>Position:</strong> ${player.Club_Position}</p>
+        <p><strong>Rating:</strong> ${player.Rating}</p>
+        <p><strong>Height:</strong> ${player.Height}</p>
+        <p><strong>Weight:</strong> ${player.Weight}</p>
+        <p><strong>Preferred Foot:</strong> ${player.Preffered_Foot}</p>
+        <p><strong>Age:</strong> ${player.Age}</p>
+        <p><strong>Preferred Position:</strong> ${player.Preffered_Position}</p>
+        <p><strong>Work Rate:</strong> ${player.Work_Rate}</p>
+        <p><strong>Weak Foot:</strong> ${player.Weak_foot}</p>
+        <p><strong>Skill Moves:</strong> ${player.Skill_Moves}</p>
+    `;
+
+    const playerContainer = document.getElementById("player-container");
+    playerContainer.innerHTML = playerDetails;
 }
 
 function updateChart() {
