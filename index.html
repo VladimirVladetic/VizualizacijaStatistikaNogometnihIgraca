@@ -3,6 +3,7 @@
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="./makeScatterPlot.js" defer></script>
         <script src="./makeRadarChart.js" defer></script>
+        <script src="./makeBarChart.js" defer></script>
         <script src="./essentials.js"></script>
         <link rel="stylesheet" href="essentials.css">
         <title>Football Stats Hub</title>
@@ -81,7 +82,10 @@
                     <div id="individual-suggestions-container" class="suggestions"></div>
                 </div>
             </div>
-            <div id="player-container"></div>
+            <div id="content-container" style="display: flex;">
+                <div id="player-container"></div>
+                <div id="bar-chart-container"></div>
+            </div>
 
         </div>
 

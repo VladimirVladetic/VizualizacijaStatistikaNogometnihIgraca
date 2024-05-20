@@ -8,6 +8,7 @@ function goToScatter() {
     document.getElementById("individual-div").style.display = "none";
     d3.select("#scatter-chart-container").selectAll("svg").remove();
     d3.select("#radar-chart-container").selectAll("svg").remove();
+    d3.select("#bar-chart-container").selectAll("svg").remove();
 }
 
 function goToRadar() {
@@ -16,6 +17,7 @@ function goToRadar() {
     document.getElementById("individual-div").style.display = "none";
     d3.select("#scatter-chart-container").selectAll("svg").remove();
     d3.select("#radar-chart-container").selectAll("svg").remove();
+    d3.select("#bar-chart-container").selectAll("svg").remove();
 }
 
 function goToIndividual() {
@@ -24,6 +26,7 @@ function goToIndividual() {
     document.getElementById("individual-div").style.display = "flex";
     d3.select("#scatter-chart-container").selectAll("svg").remove();
     d3.select("#radar-chart-container").selectAll("svg").remove();
+    d3.select("#bar-chart-container").selectAll("svg").remove();
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -79,6 +82,7 @@ function showIndividualSuggestions(data, inputId) {
             input.value = suggestion;
             suggestionsContainer.innerHTML = "";
             console.log(suggestion);
+            d3.select("#bar-chart-container").selectAll("svg").remove();
             fetchPlayer(suggestion, data);
         });
         suggestionsContainer.appendChild(suggestionItem);
@@ -110,6 +114,20 @@ function fetchPlayer(playerName, data) {
 
     const playerContainer = document.getElementById("player-container");
     playerContainer.innerHTML = playerDetails;
+
+    makeBarChart(player);
+}
+
+function makeBarChart(player) {
+    const barChartContainer = document.getElementById("bar-chart-container");
+    const skillColumns = Object.keys(player).slice(19);
+    const sortedSkills = skillColumns.sort((a, b) => player[b] - player[a]);
+    const top5Skills = sortedSkills.slice(0, 5);
+    const bottom5Skills = sortedSkills.slice(-5);
+    const top5Data = top5Skills.map(skill => ({ skill: skill, value: player[skill] }));
+    const bottom5Data = bottom5Skills.map(skill => ({ skill: skill, value: player[skill] }));
+    createBarChart(top5Data, barChartContainer, "top");
+    createBarChart(bottom5Data, barChartContainer, "bottom");
 }
 
 function updateChart() {
