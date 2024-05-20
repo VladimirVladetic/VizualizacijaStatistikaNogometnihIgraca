@@ -27,7 +27,7 @@ function createBarChart(data, container, position) {
         .attr("y", d => yScale(d.value))
         .attr("width", xScale.bandwidth())
         .attr("height", d => chartHeight - yScale(d.value))
-        .attr("fill", position === "top" ? "steelblue" : "tomato");
+        .attr("fill", position === "top" ? "green" : "red");
 
     chart.append("g")
         .attr("transform", `translate(0, ${chartHeight})`)
