@@ -34,6 +34,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 showSuggestions(data, this.id);
             });
         });
+        let individualPlayerInputs = document.querySelectorAll(".individual-player-input");
+        individualPlayerInputs.forEach(input => {
+            input.addEventListener("input", function() {
+                showIndividualSuggestions(data, this.id);
+            });
+        });
     });
 });
 
@@ -56,17 +62,6 @@ function showSuggestions(data, inputId) {
             suggestionsContainer.appendChild(suggestionItem);
         });
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-    d3.csv("FullData_augmented.csv").then(function(data) {
-        let playerInputs = document.querySelectorAll(".individual-player-input");
-        playerInputs.forEach(input => {
-            input.addEventListener("input", function() {
-                showIndividualSuggestions(data, this.id);
-            });
-        });
-    });
-});
 
 function showIndividualSuggestions(data, inputId) {
     let playerNames = data.map(player => player.Name);
