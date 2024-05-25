@@ -6,17 +6,28 @@
         <script src="./makeBarChart.js" defer></script>
         <script src="./essentials.js"></script>
         <link rel="stylesheet" href="essentials.css">
-        <title>Football Stats Hub</title>
+        <title>Footballer Analysis Hub</title>
     </head>
     <body>
         
         <div class="top">
-            <h1>Footballer analysis</h1>
+            <h1>Footballer Analysis Hub</h1>
             <nav>
                 <h2 class="nav-header" id="radar-chart-header" onclick="goToRadar()">Radar Chart Player Comparison</h2>
                 <h2 class="nav-header" id="scatter-plot-header" onclick="goToScatter()">Scatter Plot Player Stats</h2>
                 <h2 class="nav-header" id="individual-player-stats" onclick="goToIndividual()">Individual player info</h2>
             </nav>
+        </div>
+
+        <div id="intro-div">
+            <h2>Welcome to Footballer Analysis Hub</h2>
+            <p>On this website you can search to see how good your favorite players are in many 
+                aspects of play. This ranges from shot power, through speed, strength, all the way to goalkeeping
+                attributes such as handling or distribution. You can compare up to 3 players using the radar chart section,
+                search for the best players in a team based on the parameters you select using our scatter plot section and finally
+                inspect each player in the dataset one by one in our individual player section, here you can see general
+                information about the player as well as their best and worst 5 atribures.
+            </p>
         </div>
 
         <div id="scatter-div" style="display: none;">

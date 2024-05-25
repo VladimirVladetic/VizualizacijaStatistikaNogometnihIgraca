@@ -1,8 +1,5 @@
-function redirect(url) {
-    window.location.href = url;
-}
-
 function goToScatter() {
+    document.getElementById("intro-div").style.display = "none";
     document.getElementById("scatter-div").style.display = "flex";
     document.getElementById("radar-div").style.display = "none";
     document.getElementById("individual-div").style.display = "none";
@@ -12,6 +9,7 @@ function goToScatter() {
 }
 
 function goToRadar() {
+    document.getElementById("intro-div").style.display = "none";
     document.getElementById("scatter-div").style.display = "none";
     document.getElementById("radar-div").style.display = "flex";
     document.getElementById("individual-div").style.display = "none";
@@ -21,6 +19,7 @@ function goToRadar() {
 }
 
 function goToIndividual() {
+    document.getElementById("intro-div").style.display = "none";
     document.getElementById("scatter-div").style.display = "none";
     document.getElementById("radar-div").style.display = "none";
     document.getElementById("individual-div").style.display = "flex";
@@ -41,6 +40,12 @@ document.addEventListener("DOMContentLoaded", function() {
         individualPlayerInputs.forEach(input => {
             input.addEventListener("input", function() {
                 showIndividualSuggestions(data, this.id);
+            });
+        });
+        let team = document.querySelectorAll(".team-input");
+        team.forEach(input => {
+            input.addEventListener("input", function() {
+                showTeamSuggestions(data, this.id);
             });
         });
     });
@@ -226,17 +231,6 @@ function showColumnSuggestions(columnNames, inputValue, inputId) {
         suggestionsContainer.appendChild(suggestionItem);
     });
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-    d3.csv("FullData_augmented.csv").then(function(data) {
-        let team = document.querySelectorAll(".team-input");
-        team.forEach(input => {
-            input.addEventListener("input", function() {
-                showTeamSuggestions(data, this.id);
-            });
-        });
-    });
-});
 
 function showTeamSuggestions(data, inputId) {
     let input = document.getElementById(inputId);
