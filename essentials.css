@@ -107,7 +107,7 @@ nav {
     gap: 1%;
     background-color: var(--dark-blue);
     border-radius: 15%;
-    border: solid 5px #333333;
+    border: solid 5px var(--gold);
     padding: 1%;
     flex-direction: row;
 }
