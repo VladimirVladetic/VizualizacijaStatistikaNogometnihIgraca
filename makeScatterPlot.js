@@ -5,6 +5,7 @@ function createScatterPlot(xColumn, yColumn, team) {
 
     d3.select("#scatter-chart-container").selectAll("svg").remove();
     d3.select("#radar-chart-container").selectAll("svg").remove();
+    d3.select("#bar-chart-container").selectAll("svg").remove();
 
     const svg = d3.select("#scatter-chart-container")
         .append("svg")
@@ -81,17 +82,6 @@ function createScatterPlot(xColumn, yColumn, team) {
                     .duration(500)
                     .style("opacity", 0);
             });
-
-        // svg.selectAll(".player-name")
-        //     .data(sortedData)
-        //     .enter().append("text")
-        //     .attr("class", "player-name")
-        //     .attr("x", d => xScale(d[xColumn]))
-        //     .attr("y", d => yScale(d[yColumn]) - 10)
-        //     .attr("text-anchor", "middle")
-        //     .text(d => d.Name)
-        //     .style("font-size", "10px")
-        //     .style("fill", "black");
 
     }).catch(error => {
         console.error('Error loading or processing data:', error);

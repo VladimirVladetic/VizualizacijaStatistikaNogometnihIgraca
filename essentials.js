@@ -48,6 +48,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 showTeamSuggestions(data, this.id);
             });
         });
+        let columnNames = Object.keys(data[0]).slice(19);
+        let inputIds = ["stat-1", "stat-2"];
+        inputIds.forEach(inputId => {
+            let input = document.getElementById(inputId);
+            input.addEventListener("input", function() {
+                showColumnSuggestions(columnNames, this.value, inputId);
+            });
+        });
     });
 });
 
@@ -201,19 +209,6 @@ function updateChartWithSelectedPlayers(data, features, playerNames) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    d3.csv("FullData_augmented.csv").then(function(data) {
-        let columnNames = Object.keys(data[0]).slice(19);
-        let inputIds = ["stat-1", "stat-2"];
-        inputIds.forEach(inputId => {
-            let input = document.getElementById(inputId);
-            input.addEventListener("input", function() {
-                showColumnSuggestions(columnNames, this.value, inputId);
-            });
-        });
-    });
-});
-
 function showColumnSuggestions(columnNames, inputValue, inputId) {
     let suggestionsContainer = document.getElementById(`suggestions-container${inputId.slice(-1)}`);
     suggestionsContainer.innerHTML = "";
@@ -259,11 +254,9 @@ function showTeamSuggestions(data, inputId) {
 }
 
 function updateScatterPlot() {
-    // console.log("entered function");
     stat1 = document.getElementById("stat-1").value;
     stat2 = document.getElementById("stat-2").value;
     team = document.getElementById("team").value;
-    // console.log(stat1)
 
     createScatterPlot(stat1, stat2, team);
 }
